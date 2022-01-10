@@ -20,7 +20,8 @@ function generatePassword() {
   // if passwordLength is not a number, is less than 8 characters or greater than 128, application will not proceed and prompts user again
   if (passwordLength === null) {
     alert("Cancelled");
-    return;
+    // return blank string instead of 'undefined'
+    return "";
   } else if (
     isNaN(passwordLength) ||
     passwordLength < 8 ||
@@ -49,12 +50,8 @@ function generatePassword() {
   if (upperCaseConfirm) {
     passwordConditions += upperCase;
   } else if (passwordConditions === "") {
-    console.log(passwordConditions);
-    // passwordConditions =""
-    console.log(passwordConditions);
     alert("Please choose at least one category");
-    // generatePassword();
-    return;
+    return "";
   }
   // loop through passwordConditions using user entered passwordLength
   for (let i = 0; i < passwordLength; i++) {
@@ -64,8 +61,8 @@ function generatePassword() {
   return password;
 }
 
-function writePassword(password) {
-  /* var */ password = generatePassword();
+function writePassword() {
+  var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
