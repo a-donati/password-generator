@@ -2,11 +2,6 @@
 
 // target button with id of generate
 var generateBtn = document.querySelector("#generate");
-// at least one criteria needs to be selected.
-// one function to get input of how many char
-// a function to collect special char info
-// pass both into the generate pw which creates the pw
-// write pw appends it to the text
 
 // possible output generations
 function generatePassword() {
@@ -23,7 +18,7 @@ function generatePassword() {
   );
 
   // if passwordLength is not a number, is less than 8 characters or greater than 128, application will not proceed and prompts user again
-  if (passwordLength == null) {
+  if (passwordLength === null) {
     alert("Cancelled");
     return;
   } else if (
@@ -41,6 +36,7 @@ function generatePassword() {
   }
 
   // if conditions are confirmed add to passwordConditions empty var
+
   if (symbolsConfirm) {
     passwordConditions += symbols;
   }
@@ -52,16 +48,15 @@ function generatePassword() {
   }
   if (upperCaseConfirm) {
     passwordConditions += upperCase;
-  } if (
-    !symbolsConfirm &&
-    !numbersConfirm &&
-    !lowerCaseConfirm &&
-    !upperCaseConfirm
-  ) {
+  } else if (passwordConditions === "") {
+    console.log(passwordConditions);
+    // passwordConditions =""
+    console.log(passwordConditions);
     alert("Please choose at least one category");
-    generatePassword();
+    // generatePassword();
+    return;
   }
-
+  // loop through passwordConditions using user entered passwordLength
   for (let i = 0; i < passwordLength; i++) {
     password +=
       passwordConditions[Math.floor(Math.random() * passwordConditions.length)];
@@ -69,8 +64,8 @@ function generatePassword() {
   return password;
 }
 
-function writePassword() {
-  var password = generatePassword();
+function writePassword(password) {
+  /* var */ password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
